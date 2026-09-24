@@ -30,7 +30,7 @@ jobs:
         working-directory: ./app/server
         run: |
           python -m unittest test_app -v
-          
+
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
@@ -69,3 +69,16 @@ jobs:
       - name: Run e2e tests
         working-directory: ./app/client
         run: npx playwright test
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+          cache: 'pip'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: 'app/client/package-lock.json'
